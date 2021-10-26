@@ -33,7 +33,10 @@ class VisitViewSet(SerializerClassMapperViewSetMixin, GenericAPIView):
         Request that registers visited resources at this point in time.
 
         ### Sample request:
-        Request data:
+        Request body:
+        - links (`<List[str]>`) - array of resource addresses
+
+        Sample body:
         ```
         {
             "links": [
@@ -79,12 +82,16 @@ class VisitViewSet(SerializerClassMapperViewSetMixin, GenericAPIView):
     @action(methods=['GET'], detail=False, url_path='visited-domains',)
     def visited_domains(self, request, *args, **kwargs):
         """
-        Request that returns visited resources by `start` and `end` parameters in query parameters.
+        Request that returns visited resources by `from` and `to` parameters in query parameters.
 
         ### Sample request:
 
         Request
         `GET: {host}/api/visited-domains?from=123456789&to=123456789`
+
+        Query parameters:
+        - from (`<str|int|float>`) - `POSIX` datetime format
+        - to (`<str|int|float>`) - `POSIX` datetime format
 
         Response status codes:
         - 200 - Created
