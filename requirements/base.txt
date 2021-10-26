@@ -1,0 +1,23 @@
+# Web-framework
+Django==3.2.8
+
+# `PostgreSQL` adapter
+psycopg2-binary==2.9.1
+
+# REST-API framework (DRF)
+djangorestframework==3.12.4
+
+# Automated generation of real `Swagger/OpenAPI` 2.0 schemas from DRF code
+drf-yasg==1.20.0
+
+# CLient for `Redis` key-value store
+redis==3.5.3
+
+# Full featured Redis cache backend
+django_redis==5.0.0
+
+# Simplifies way to create fixtures for tests
+factory-boy
+
+# Django-filter is a reusable `Django` application for allowing users to filter querysets dynamically
+django-filter==21.1

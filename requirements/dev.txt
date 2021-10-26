@@ -1,0 +1,7 @@
+-r base.txt
+
+# IPython debugger tool
+ipdb
+
+# IPython
+ipython

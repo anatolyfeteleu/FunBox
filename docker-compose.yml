@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: _dockerfiles/db/Dockerfile
+    volumes:
+      - db:/var/lib/postgres/data
+    ports:
+      - '5555:5432'
+    hostname: db
+    env_file:
+      - _dockerfiles/db/local.env
+  redis:
+    image: redis:latest
+    ports: 
+      - '6379:6379'
+  app:
+    image: funbox-app
+    command: python ./manage.py runserver
+    build:
+      context: .
+      dockerfile: _dockerfiles/app/Dockerfile
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app/code
+    ports:
+      - '8000:8000'
+    env_file:
+      - _dockerfiles/app/local.env
+    stop_grace_period: 5s
+volumes:
+  db:
